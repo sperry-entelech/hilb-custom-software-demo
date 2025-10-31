@@ -55,22 +55,22 @@ export const UploadPage = ({ onUploadComplete }) => {
 		<div className="space-y-6">
 			<UploadZone onFilesSelected={(f) => setFiles(f.slice(0, 10))} />
 			<UploadForm onSubmit={(data) => setForm(data)} />
-			<div className="flex items-center gap-3">
-				<button
-					onClick={handleProcess}
-					disabled={loading || !form || files.length === 0}
-					className="rounded bg-hilb-lime px-6 py-3 font-semibold text-gray-900 hover:bg-hilb-lime-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-				>
-					{loading ? 'Processing…' : 'Analyze & Save'}
-				</button>
-				{files.length > 0 && <span className="text-sm text-gray-400">Selected: {files.length} file(s)</span>}
+		<div className="flex items-center gap-3">
+			<button
+				onClick={handleProcess}
+				disabled={loading || !form || files.length === 0}
+				className="rounded bg-corp-blue px-6 py-3 font-semibold text-white hover:bg-corp-blue-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+			>
+				{loading ? 'Processing…' : 'Analyze & Save'}
+			</button>
+			{files.length > 0 && <span className="text-sm text-corp-text-light">Selected: {files.length} file(s)</span>}
+		</div>
+		{progress && (
+			<div className="rounded bg-corp-green/10 border border-corp-green p-3 text-sm text-corp-green-dark">
+				{progress}
 			</div>
-			{progress && (
-				<div className="rounded-lg bg-hilb-lime/20 border border-hilb-lime/40 p-3 text-sm text-hilb-lime">
-					{progress}
-				</div>
-			)}
-			{error && <div className="rounded border border-red-400/50 bg-red-900/20 p-3 text-sm text-red-400">{error}</div>}
+		)}
+		{error && <div className="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
 		</div>
 	);
 };

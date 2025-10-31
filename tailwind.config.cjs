@@ -7,11 +7,18 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				'hilb-navy': '#1e3a8a',
-				'hilb-navy-light': '#3b82f6',
-				'hilb-navy-dark': '#1e293b',
-				'hilb-lime': '#84cc16',
-				'hilb-lime-dark': '#65a30d',
+				'corp-blue': '#4a90e2',
+				'corp-blue-dark': '#357abd',
+				'corp-green': '#5cb85c',
+				'corp-green-dark': '#449d44',
+				'corp-gray': '#e0e0e0',
+				'corp-gray-light': '#f5f5f5',
+				'corp-text': '#000000',
+				'corp-text-light': '#333333',
+			},
+			boxShadow: {
+				'corp': '0 2px 4px rgba(0,0,0,0.1)',
+				'corp-lg': '0 4px 6px rgba(0,0,0,0.1)',
 			},
 		},
 	},

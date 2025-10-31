@@ -71,7 +71,19 @@ export async function loadCandidates(filters = {}) {
 	const { data, error } = await query;
 
 	if (error) throw new Error(`Failed to load candidates: ${error.message}`);
-	return data || [];
+	
+	// Client-side search filtering (Supabase text search is limited)
+	let filtered = data || [];
+	if (filters.search && filters.search.trim()) {
+		const searchLower = filters.search.toLowerCase().trim();
+		filtered = filtered.filter(c => 
+			(c.name?.toLowerCase().includes(searchLower)) ||
+			(c.email?.toLowerCase().includes(searchLower)) ||
+			(c.university?.toLowerCase().includes(searchLower))
+		);
+	}
+	
+	return filtered;
 }
 
 export async function updateCandidate(id, updates) {
@@ -89,5 +101,23 @@ export async function updateCandidate(id, updates) {
 export async function deleteCandidate(id) {
 	const { error } = await supabase.from('candidates').delete().eq('id', id);
 	if (error) throw new Error(`Failed to delete candidate: ${error.message}`);
+}
+
+export async function bulkUpdateStatus(ids, status) {
+	const { error } = await supabase
+		.from('candidates')
+		.update({ status, updated_at: new Date().toISOString() })
+		.in('id', ids);
+
+	if (error) throw new Error(`Failed to update candidates: ${error.message}`);
+}
+
+export async function bulkDelete(ids) {
+	const { error } = await supabase
+		.from('candidates')
+		.delete()
+		.in('id', ids);
+
+	if (error) throw new Error(`Failed to delete candidates: ${error.message}`);
 }
 
