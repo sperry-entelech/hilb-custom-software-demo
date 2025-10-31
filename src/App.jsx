@@ -10,6 +10,7 @@ export const App = () => {
 	const [selected, setSelected] = useState(null);
 	const [candidates, setCandidates] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [configError, setConfigError] = useState('');
 	const [filters, setFilters] = useState({ positionType: 'all', scoreRange: 'all', status: 'all', degree: 'all' });
 
 	useEffect(() => {
@@ -18,11 +19,16 @@ export const App = () => {
 
 	async function loadCandidatesData() {
 		setLoading(true);
+		setConfigError('');
 		try {
 			const data = await loadCandidates(filters);
-			setCandidates(data);
+			setCandidates(data || []);
 		} catch (error) {
 			console.error('Failed to load candidates:', error);
+			setCandidates([]);
+			if (error.message?.includes('Supabase') || error.message?.includes('env') || error.message?.includes('Failed to load')) {
+				setConfigError('Supabase not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in Vercel environment variables.');
+			}
 		} finally {
 			setLoading(false);
 		}
@@ -66,6 +72,12 @@ export const App = () => {
 				</div>
 			</header>
 			<main className="mx-auto max-w-6xl px-4 py-8">
+				{configError && (
+					<div className="mb-4 rounded-lg border border-amber-500/50 bg-amber-500/10 p-4 text-amber-400">
+						<p className="font-semibold">⚠️ Configuration Required</p>
+						<p className="text-sm mt-1">{configError}</p>
+					</div>
+				)}
 				{view === 'upload' && (
 					<div className="rounded-lg border border-gray-800 bg-gray-800/50 p-6 shadow-lg">
 						<UploadPage onUploadComplete={() => { setView('dashboard'); loadCandidatesData(); }} />
