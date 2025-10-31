@@ -69,17 +69,17 @@ export const StatsDashboard = ({ candidates = [], onRoadmapClick }) => {
 	return (
 		<>
 			<div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-				<div className="rounded border border-[#3d3d3d] bg-white p-6 shadow-corp">
+				<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6 shadow-corp">
 					<div className="text-sm text-corp-green mb-1">Total Candidates</div>
 					<div className="text-3xl font-bold text-white">{total}</div>
 				</div>
-				<div className="rounded border border-[#3d3d3d] bg-white p-6 shadow-corp">
+				<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6 shadow-corp">
 					<div className="text-sm text-corp-green mb-1">Average Score</div>
 					<div className="text-3xl font-bold text-white">{avgScore}</div>
 				</div>
-				<div className="rounded border border-[#3d3d3d] bg-white p-6 shadow-corp">
+				<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6 shadow-corp">
 					<div className="text-sm text-corp-green mb-2">Status Distribution</div>
-					<div className="space-y-1 text-xs">
+					<div className="space-y-1 text-xs text-corp-green">
 						<div className="flex justify-between">
 							<span>Qualified:</span>
 							<span className="font-medium">{statusCounts.qualified || 0}</span>
@@ -98,9 +98,9 @@ export const StatsDashboard = ({ candidates = [], onRoadmapClick }) => {
 						</div>
 					</div>
 				</div>
-				<div className="rounded border border-[#3d3d3d] bg-white p-6 shadow-corp">
+				<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6 shadow-corp">
 					<div className="text-sm text-corp-green mb-2">Score Distribution</div>
-					<div className="space-y-1 text-xs">
+					<div className="space-y-1 text-xs text-corp-green">
 						{Object.entries(scoreRanges).map(([range, count]) => {
 							const percentage = maxScoreCount > 0 ? (count / maxScoreCount) * 100 : 0;
 							return (
@@ -127,7 +127,7 @@ export const StatsDashboard = ({ candidates = [], onRoadmapClick }) => {
 			</div>
 			
 			{/* Locked Features Section */}
-			<div className="mb-6 rounded border border-[#3d3d3d] bg-white p-6 shadow-corp">
+			<div className="mb-6 rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6 shadow-corp">
 				<h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
 					<span>🔒</span>
 					<span>Planned Enhancements</span>
