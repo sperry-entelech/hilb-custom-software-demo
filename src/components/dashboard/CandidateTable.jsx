@@ -73,8 +73,8 @@ export const CandidateTable = ({ candidates = [], onSelect, selectedIds = [], on
 							<td className="px-6 py-4 font-medium">
 								<button className="hover:text-corp-blue transition-colors" onClick={() => onSelect?.(c)}>{c.name}</button>
 							</td>
-							<td className="px-6 py-4">
-								<span className={`rounded px-2 py-1 text-xs ${c.position_type === 'early_career' ? 'bg-corp-green text-white' : 'bg-corp-blue text-white'}`}>
+							<td className="px-6 py-4 whitespace-nowrap">
+								<span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium whitespace-nowrap ${c.position_type === 'early_career' ? 'bg-theme-dark text-theme-tan border border-theme-gray' : 'bg-theme-gray text-theme-tan-light border border-theme-dark'}`}>
 									{c.position_type === 'early_career' ? 'Early Career' : 'General'}
 								</span>
 							</td>

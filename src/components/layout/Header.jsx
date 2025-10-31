@@ -13,6 +13,10 @@ export const Header = ({ currentView, onViewChange, onRefresh }) => {
 						</div>
 					</div>
 					<h1 className="text-2xl font-bold text-corp-text">Hilb Group Candidate Screening</h1>
+					{/* Demo Badge */}
+					<span className="px-3 py-1 bg-corp-blue/10 text-corp-blue text-xs font-semibold rounded border border-corp-blue">
+						DEMO v1.0
+					</span>
 				</div>
 				<nav className="flex gap-3">
 					<button
@@ -37,6 +41,16 @@ export const Header = ({ currentView, onViewChange, onRefresh }) => {
 						}}
 					>
 						Dashboard
+					</button>
+					<button
+						className={`px-6 py-2 font-medium text-sm transition-colors ${
+							currentView === 'roadmap'
+								? 'bg-corp-blue text-white'
+								: 'bg-white text-corp-text border border-corp-gray hover:bg-corp-gray-light'
+						}`}
+						onClick={() => onViewChange('roadmap')}
+					>
+						🔒 Roadmap
 					</button>
 				</nav>
 			</div>

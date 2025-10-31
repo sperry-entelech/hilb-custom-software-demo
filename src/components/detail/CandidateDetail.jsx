@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { exportCandidatePDF } from '../../services/export.js';
 import { updateCandidate } from '../../services/candidates.js';
+import { LockedFeatureBadge } from '../shared/LockedFeatureBadge.jsx';
 
 export const CandidateDetail = ({ candidate, onBack, onUpdate }) => {
 	const [notes, setNotes] = useState(candidate.notes || '');
@@ -32,8 +33,43 @@ export const CandidateDetail = ({ candidate, onBack, onUpdate }) => {
 		<div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
 			<div className="lg:col-span-3 space-y-6">
 				<div className="rounded border border-corp-gray bg-white p-6 shadow-corp">
-					<h2 className="mb-4 text-lg font-semibold text-corp-text">Resume Preview</h2>
-					<div className="h-96 rounded border border-corp-gray bg-corp-gray-light p-4 text-sm text-corp-text-light">Embedded PDF viewer placeholder</div>
+					<div className="mb-4 flex items-center justify-between">
+						<h2 className="text-lg font-semibold text-corp-text">Resume Preview</h2>
+						{candidate.resume_url && (
+							<a 
+								href={candidate.resume_url} 
+								target="_blank" 
+								rel="noopener noreferrer"
+								className="text-sm text-corp-blue hover:underline"
+							>
+								Download Original PDF →
+							</a>
+						)}
+					</div>
+					<div className="h-96 rounded border border-corp-gray bg-white p-4 overflow-auto">
+						{candidate.resume_text ? (
+							<pre className="whitespace-pre-wrap font-sans text-xs text-corp-text leading-relaxed">
+								{candidate.resume_text}
+							</pre>
+						) : (
+							<div className="flex h-full items-center justify-center text-corp-text-light">
+								<div className="text-center">
+									<div className="mb-2 text-4xl">📄</div>
+									<div className="text-sm">Resume text not available</div>
+									{candidate.resume_url && (
+										<a 
+											href={candidate.resume_url} 
+											target="_blank" 
+											rel="noopener noreferrer"
+											className="mt-2 inline-block text-sm text-corp-blue hover:underline"
+										>
+											View PDF
+										</a>
+									)}
+								</div>
+							</div>
+						)}
+					</div>
 				</div>
 			</div>
 			<div className="lg:col-span-2 space-y-6">
@@ -112,6 +148,35 @@ export const CandidateDetail = ({ candidate, onBack, onUpdate }) => {
 						>
 							{saving ? 'Saving...' : 'Save Notes'}
 						</button>
+					</div>
+				</div>
+				{/* Locked Features Section */}
+				<div className="rounded border-2 border-dashed border-corp-gray bg-corp-gray-light/20 p-6">
+					<h3 className="text-lg font-semibold text-corp-text mb-4 flex items-center gap-2">
+						<span>🔒</span>
+						<span>Planned Features</span>
+					</h3>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+						<div className="space-y-2">
+							<LockedFeatureBadge 
+								featureName="Interview Scheduler" 
+								tooltip="Schedule interviews with calendar integration"
+							/>
+							<LockedFeatureBadge 
+								featureName="Activity Timeline" 
+								tooltip="Complete history of all actions on this candidate"
+							/>
+						</div>
+						<div className="space-y-2">
+							<LockedFeatureBadge 
+								featureName="Team Comments" 
+								tooltip="Collaborative comments with @mentions and threading"
+							/>
+							<LockedFeatureBadge 
+								featureName="Email Candidate" 
+								tooltip="Send status updates and communications"
+							/>
+						</div>
 					</div>
 				</div>
 				<div className="flex gap-3">

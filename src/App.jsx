@@ -8,6 +8,7 @@ import { StatsDashboard } from './components/dashboard/StatsDashboard.jsx';
 import { CandidateTable } from './components/dashboard/CandidateTable.jsx';
 import { CandidateDetail } from './components/detail/CandidateDetail.jsx';
 import { CandidateCompare } from './components/compare/CandidateCompare.jsx';
+import { FeatureRoadmap } from './components/roadmap/FeatureRoadmap.jsx';
 import { loadCandidates, bulkUpdateStatus, bulkDelete } from './services/candidates.js';
 import { exportToCSV, exportCandidatePDF } from './services/export.js';
 
@@ -99,7 +100,7 @@ export const App = () => {
 				)}
 				{view === 'dashboard' && !selected && (
 					<div className="space-y-6">
-						<StatsDashboard candidates={candidates} />
+						<StatsDashboard candidates={candidates} onRoadmapClick={() => setView('roadmap')} />
 						<div className="flex items-center justify-between mb-4">
 							<SearchBar onSearch={(query) => handleFilterChange({ search: query })} />
 							<div className="flex gap-2 ml-4">
@@ -175,6 +176,11 @@ export const App = () => {
 								setSelectedIds([]);
 							}}
 						/>
+					</div>
+				)}
+				{view === 'roadmap' && (
+					<div className="space-y-6">
+						<FeatureRoadmap onBack={() => setView('dashboard')} />
 					</div>
 				)}
 			</main>
