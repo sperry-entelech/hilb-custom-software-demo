@@ -14,13 +14,13 @@ export const BulkActions = ({ selectedIds, candidates, onBulkStatusUpdate, onBul
 	};
 
 	return (
-		<div className="mb-4 rounded border border-corp-gray bg-corp-gray-light p-4 shadow-corp">
+		<div className="mb-4 rounded border border-[#3d3d3d] bg-[#3d3d3d] p-4 shadow-corp">
 			<div className="flex items-center justify-between">
-				<span className="text-sm font-medium text-corp-text">{selectedIds.length} selected</span>
+				<span className="text-sm font-medium text-white">{selectedIds.length} selected</span>
 				<div className="flex gap-2">
 					<select
 						onChange={(e) => handleStatusChange(e.target.value)}
-						className="rounded border border-corp-gray bg-white px-3 py-1 text-sm text-corp-text focus:border-corp-blue focus:outline-none"
+						className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-1 text-sm text-white focus:border-corp-green focus:outline-none"
 					>
 						<option value="">Update Status...</option>
 						<option value="pending">Pending</option>
@@ -31,13 +31,13 @@ export const BulkActions = ({ selectedIds, candidates, onBulkStatusUpdate, onBul
 					</select>
 					<button
 						onClick={handleDelete}
-						className="rounded border border-red-300 bg-white px-3 py-1 text-sm text-red-700 hover:bg-red-50 transition-colors"
+						className="rounded border border-red-600 bg-[#2d2d2d] px-3 py-1 text-sm text-red-400 hover:bg-red-900/30 transition-colors"
 					>
 						Delete
 					</button>
 					<button
 						onClick={onClearSelection}
-						className="rounded border border-corp-gray bg-white px-3 py-1 text-sm text-corp-text hover:bg-corp-gray-light transition-colors"
+						className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-1 text-sm text-white hover:bg-[#4d4d4d] transition-colors"
 					>
 						Clear
 					</button>

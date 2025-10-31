@@ -1,9 +1,9 @@
 export const CandidateCompare = ({ candidates = [], onBack, onSelectCandidate }) => {
 	if (candidates.length === 0) {
 		return (
-			<div className="rounded border border-corp-gray bg-white p-6 shadow-corp">
-				<p className="text-corp-text-light">No candidates selected for comparison</p>
-				<button onClick={onBack} className="mt-4 rounded border border-corp-gray px-4 py-2 text-corp-text hover:bg-corp-gray-light transition-colors">
+			<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6 shadow-corp">
+				<p className="text-white-light">No candidates selected for comparison</p>
+				<button onClick={onBack} className="mt-4 rounded border border-[#3d3d3d] px-4 py-2 text-white hover:bg-[#3d3d3d] transition-colors">
 					Back to Dashboard
 				</button>
 			</div>
@@ -16,10 +16,10 @@ export const CandidateCompare = ({ candidates = [], onBack, onSelectCandidate })
 	return (
 		<div className="space-y-6">
 			<div className="flex items-center justify-between">
-				<h2 className="text-xl font-bold text-corp-text">Compare Candidates</h2>
+				<h2 className="text-xl font-bold text-white">Compare Candidates</h2>
 				<button
 					onClick={onBack}
-					className="rounded border border-corp-gray px-4 py-2 text-corp-text hover:bg-corp-gray-light transition-colors"
+					className="rounded border border-[#3d3d3d] px-4 py-2 text-white hover:bg-[#3d3d3d] transition-colors"
 				>
 					Back to Dashboard
 				</button>
@@ -27,13 +27,13 @@ export const CandidateCompare = ({ candidates = [], onBack, onSelectCandidate })
 			
 			<div className="overflow-x-auto">
 				<div className="min-w-full inline-block">
-					<table className="min-w-full border-collapse border border-corp-gray bg-white shadow-corp">
-						<thead className="bg-corp-gray-light">
+					<table className="min-w-full border-collapse border border-[#3d3d3d] bg-[#2d2d2d] shadow-corp">
+						<thead className="bg-[#3d3d3d]">
 							<tr>
-								<th className="border border-corp-gray px-4 py-3 text-left text-corp-text font-semibold">Metric</th>
+								<th className="border border-[#3d3d3d] px-4 py-3 text-left text-white font-semibold">Metric</th>
 								{displayCandidates.map((c) => (
-									<th key={c.id} className="border border-corp-gray px-4 py-3 text-left text-corp-text font-semibold">
-										<button onClick={() => onSelectCandidate?.(c)} className="hover:text-corp-blue">
+									<th key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-left text-white font-semibold">
+										<button onClick={() => onSelectCandidate?.(c)} className="hover:text-corp-green">
 											{c.name}
 										</button>
 									</th>
@@ -42,13 +42,13 @@ export const CandidateCompare = ({ candidates = [], onBack, onSelectCandidate })
 						</thead>
 						<tbody>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Overall Score</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Overall Score</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-white">
 										<span className={`inline-block rounded px-2 py-1 text-xs font-medium ${
 											(c.overall_score || 0) >= 76 ? 'bg-corp-green/20 text-corp-green-dark' :
-											(c.overall_score || 0) >= 51 ? 'bg-amber-100 text-amber-800' :
-											'bg-red-100 text-red-800'
+											(c.overall_score || 0) >= 51 ? 'bg-amber-900/30 text-amber-200' :
+											'bg-red-900/30 text-red-300'
 										}`}>
 											{c.overall_score || 0}
 										</span>
@@ -56,63 +56,63 @@ export const CandidateCompare = ({ candidates = [], onBack, onSelectCandidate })
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Position Score</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Position Score</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">{c.position_specific_score || 0}</td>
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-corp-green">{c.position_specific_score || 0}</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Education Score</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Education Score</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">{c.education_score || 0}</td>
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-corp-green">{c.education_score || 0}</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Experience Score</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Experience Score</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">{c.experience_score || 0}</td>
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-corp-green">{c.experience_score || 0}</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Traits Score</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Traits Score</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">{c.traits_score || 0}</td>
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-corp-green">{c.traits_score || 0}</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Industry Fit</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Industry Fit</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">{c.industry_fit_score || 0}</td>
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-corp-green">{c.industry_fit_score || 0}</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Degree Field</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Degree Field</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">{c.degree_field || '-'}</td>
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-corp-green">{c.degree_field || '-'}</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">GPA</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">GPA</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">{c.gpa || '-'}</td>
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-corp-green">{c.gpa || '-'}</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">University</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">University</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">{c.university || '-'}</td>
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-corp-green">{c.university || '-'}</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Status</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Status</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3">
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3">
 										<span className={`rounded px-2 py-1 text-xs ${
 											c.status === 'qualified' ? 'bg-corp-green/20 text-corp-green-dark' :
-											c.status === 'rejected' ? 'bg-red-100 text-red-800' :
-											c.status === 'interviewed' ? 'bg-blue-100 text-blue-800' :
+											c.status === 'rejected' ? 'bg-red-900/30 text-red-300' :
+											c.status === 'interviewed' ? 'bg-blue-900/30 text-blue-300' :
 											c.status === 'hired' ? 'bg-corp-green/20 text-corp-green-dark' :
-											'bg-gray-200 text-gray-700'
+											'bg-[#3d3d3d] text-[#cccccc]'
 										}`}>
 											{c.status || 'pending'}
 										</span>
@@ -120,17 +120,17 @@ export const CandidateCompare = ({ candidates = [], onBack, onSelectCandidate })
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Top Strength</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Top Strength</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3 text-sm">
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-sm text-corp-green">
 										{Array.isArray(c.strengths) && c.strengths.length > 0 ? c.strengths[0] : '-'}
 									</td>
 								))}
 							</tr>
 							<tr>
-								<td className="border border-corp-gray px-4 py-3 font-medium bg-corp-gray-light">Top Concern</td>
+								<td className="border border-[#3d3d3d] px-4 py-3 font-medium bg-[#3d3d3d] text-white">Top Concern</td>
 								{displayCandidates.map((c) => (
-									<td key={c.id} className="border border-corp-gray px-4 py-3 text-sm">
+									<td key={c.id} className="border border-[#3d3d3d] px-4 py-3 text-sm text-corp-green">
 										{Array.isArray(c.concerns) && c.concerns.length > 0 ? c.concerns[0] : '-'}
 									</td>
 								))}
@@ -140,7 +140,7 @@ export const CandidateCompare = ({ candidates = [], onBack, onSelectCandidate })
 				</div>
 			</div>
 			{candidates.length > maxCandidates && (
-				<div className="rounded border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800">
+				<div className="rounded border border-amber-600 bg-amber-900/30 p-3 text-sm text-amber-200">
 					Only showing first {maxCandidates} candidates. Select fewer candidates for comparison.
 				</div>
 			)}

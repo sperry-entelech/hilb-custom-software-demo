@@ -16,7 +16,7 @@ export const SearchBar = ({ onSearch }) => {
 				placeholder="Search by name, email, or university..."
 				value={query}
 				onChange={handleChange}
-				className="w-full rounded border border-corp-gray bg-white px-4 py-2 text-corp-text focus:border-corp-blue focus:outline-none shadow-corp"
+				className="w-full rounded border border-[#3d3d3d] bg-[#2d2d2d] px-4 py-2 text-white placeholder:text-[#666666] focus:border-corp-green focus:outline-none shadow-corp"
 			/>
 		</div>
 	);

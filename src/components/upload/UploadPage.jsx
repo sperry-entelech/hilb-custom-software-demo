@@ -63,14 +63,14 @@ export const UploadPage = ({ onUploadComplete }) => {
 			>
 				{loading ? 'Processing…' : 'Analyze & Save'}
 			</button>
-			{files.length > 0 && <span className="text-sm text-corp-text-light">Selected: {files.length} file(s)</span>}
+			{files.length > 0 && <span className="text-sm text-corp-green">Selected: {files.length} file(s)</span>}
 		</div>
 		{progress && (
 			<div className="rounded bg-corp-green/10 border border-corp-green p-3 text-sm text-corp-green-dark">
 				{progress}
 			</div>
 		)}
-		{error && <div className="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
+		{error && <div className="rounded border border-red-600 bg-red-900/30 p-3 text-sm text-red-300">{error}</div>}
 		</div>
 	);
 };

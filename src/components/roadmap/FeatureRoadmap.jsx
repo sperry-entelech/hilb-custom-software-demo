@@ -120,13 +120,13 @@ export const FeatureRoadmap = ({ onBack }) => {
 		<div className="space-y-8">
 			<div className="flex items-center justify-between mb-6">
 				<div>
-					<h2 className="text-3xl font-bold text-corp-text">Feature Roadmap</h2>
-					<p className="text-corp-text-light mt-2">Current capabilities and planned enhancements</p>
+					<h2 className="text-3xl font-bold text-white">Feature Roadmap</h2>
+					<p className="text-corp-green mt-2">Current capabilities and planned enhancements</p>
 				</div>
 				{onBack && (
 					<button
 						onClick={onBack}
-						className="rounded border border-corp-gray px-4 py-2 text-corp-text hover:bg-corp-gray-light transition-colors"
+						className="rounded border border-[#3d3d3d] px-4 py-2 text-white hover:bg-[#3d3d3d] transition-colors"
 					>
 						Back to Dashboard
 					</button>
@@ -134,19 +134,19 @@ export const FeatureRoadmap = ({ onBack }) => {
 			</div>
 
 			{/* Demo Banner */}
-			<div className="rounded-lg border-2 border-corp-blue bg-corp-blue/5 p-6">
+			<div className="rounded-lg border-2 border-corp-green bg-[#2d2d2d] p-6">
 				<div className="flex items-start gap-4">
 					<div className="text-3xl">🚀</div>
 					<div>
-						<h3 className="text-xl font-bold text-corp-text mb-2">Demo Version</h3>
-						<p className="text-corp-text-light mb-4">
+						<h3 className="text-xl font-bold text-white mb-2">Demo Version</h3>
+						<p className="text-corp-green mb-4">
 							You're viewing the <strong>Alpha v1.0 Demo</strong> with core screening features. 
 							The roadmap below shows <strong>planned enhancements</strong> that would significantly 
 							improve the value and ROI of this platform.
 						</p>
-						<div className="rounded bg-white border border-corp-blue p-4">
-							<p className="text-sm font-semibold text-corp-text mb-2">Estimated Additional Value:</p>
-							<ul className="text-sm text-corp-text-light space-y-1">
+						<div className="rounded bg-[#2d2d2d] border border-corp-green p-4">
+							<p className="text-sm font-semibold text-white mb-2">Estimated Additional Value:</p>
+							<ul className="text-sm text-corp-green space-y-1">
 								<li>• <strong>Applicant Portal:</strong> 50% reduction in HR manual work</li>
 								<li>• <strong>HR Management Tools:</strong> 40% faster hiring process, data-driven decisions</li>
 								<li>• <strong>Automation:</strong> 60% of routine tasks handled automatically</li>
@@ -158,16 +158,16 @@ export const FeatureRoadmap = ({ onBack }) => {
 			</div>
 
 			{/* Current Features */}
-			<div className="rounded border border-corp-gray bg-white p-6 shadow-corp">
-				<h3 className="text-xl font-semibold text-corp-text mb-4">✅ Currently Available (Alpha v1.0)</h3>
+			<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6 shadow-corp">
+				<h3 className="text-xl font-semibold text-white mb-4">✅ Currently Available (Alpha v1.0)</h3>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 					{currentFeatures.map((feature, idx) => (
-						<div key={idx} className="rounded border border-corp-green bg-corp-green/5 p-4">
+						<div key={idx} className="rounded border border-corp-green bg-corp-green/10 p-4">
 							<div className="flex items-center gap-2 mb-2">
 								<span className="text-corp-green font-bold">✓</span>
-								<h4 className="font-semibold text-corp-text">{feature.name}</h4>
+								<h4 className="font-semibold text-white">{feature.name}</h4>
 							</div>
-							<p className="text-sm text-corp-text-light">{feature.description}</p>
+							<p className="text-sm text-corp-green">{feature.description}</p>
 						</div>
 					))}
 				</div>
@@ -175,14 +175,14 @@ export const FeatureRoadmap = ({ onBack }) => {
 
 			{/* Planned Features */}
 			{plannedFeatures.map((category, catIdx) => (
-				<div key={catIdx} className="rounded border border-corp-gray bg-white p-6 shadow-corp">
+				<div key={catIdx} className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6 shadow-corp">
 					<div className="flex items-center gap-3 mb-6">
-						<div className="w-12 h-12 rounded-full bg-corp-blue/10 flex items-center justify-center">
+						<div className="w-12 h-12 rounded-full bg-corp-green/10 flex items-center justify-center">
 							<span className="text-2xl">🔒</span>
 						</div>
 						<div>
-							<h3 className="text-2xl font-semibold text-corp-text">{category.category}</h3>
-							<p className="text-corp-text-light text-sm">Planned features - part of development roadmap</p>
+							<h3 className="text-2xl font-semibold text-white">{category.category}</h3>
+							<p className="text-corp-green text-sm">Planned features - part of development roadmap</p>
 						</div>
 					</div>
 					
@@ -190,28 +190,28 @@ export const FeatureRoadmap = ({ onBack }) => {
 						{category.features.map((feature, featIdx) => (
 							<div 
 								key={featIdx}
-								className="rounded border-2 border-dashed border-corp-gray bg-corp-gray-light/30 p-5 hover:border-corp-blue transition-colors"
+								className="rounded border-2 border-dashed border-[#3d3d3d] bg-[#3d3d3d]/30 p-5 hover:border-corp-green transition-colors"
 							>
 								<div className="flex items-start justify-between gap-4 mb-3">
 									<div className="flex-1">
 										<div className="flex items-center gap-3 mb-2">
-											<h4 className="font-semibold text-corp-text">{feature.name}</h4>
+											<h4 className="font-semibold text-white">{feature.name}</h4>
 											<span className={`text-xs px-2 py-1 rounded font-medium ${
 												feature.value === 'High' 
 													? 'bg-corp-green/20 text-corp-green-dark border border-corp-green'
 													: feature.value === 'Medium'
-													? 'bg-amber-100 text-amber-800 border border-amber-300'
-													: 'bg-gray-200 text-gray-700 border border-gray-300'
+													? 'bg-amber-900/30 text-amber-200 border border-amber-600'
+													: 'bg-[#3d3d3d] text-[#cccccc] border border-[#4d4d4d]'
 											}`}>
 												{feature.value} Value
 											</span>
 										</div>
-										<p className="text-sm text-corp-text-light mb-3">{feature.description}</p>
+										<p className="text-sm text-corp-green mb-3">{feature.description}</p>
 									</div>
 								</div>
-								<div className="rounded bg-white border border-corp-gray p-3">
-									<p className="text-xs font-semibold text-corp-text mb-1">Business Impact:</p>
-									<p className="text-sm text-corp-text-light">{feature.impact}</p>
+								<div className="rounded bg-[#2d2d2d] border border-[#3d3d3d] p-3">
+									<p className="text-xs font-semibold text-white mb-1">Business Impact:</p>
+									<p className="text-sm text-corp-green">{feature.impact}</p>
 								</div>
 							</div>
 						))}
@@ -220,24 +220,24 @@ export const FeatureRoadmap = ({ onBack }) => {
 			))}
 
 			{/* Summary Stats */}
-			<div className="rounded border border-corp-gray bg-corp-blue/5 p-6">
-				<h3 className="text-xl font-semibold text-corp-text mb-4">Roadmap Summary</h3>
+			<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-6">
+				<h3 className="text-xl font-semibold text-white mb-4">Roadmap Summary</h3>
 				<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 					<div className="text-center">
-						<div className="text-3xl font-bold text-corp-blue">{plannedFeatures.flatMap(c => c.features).length}</div>
-						<div className="text-sm text-corp-text-light mt-1">Planned Features</div>
+						<div className="text-3xl font-bold text-corp-green">{plannedFeatures.flatMap(c => c.features).length}</div>
+						<div className="text-sm text-corp-green mt-1">Planned Features</div>
 					</div>
 					<div className="text-center">
 						<div className="text-3xl font-bold text-corp-green">{plannedFeatures.flatMap(c => c.features).filter(f => f.value === 'High').length}</div>
-						<div className="text-sm text-corp-text-light mt-1">High Value</div>
+						<div className="text-sm text-corp-green mt-1">High Value</div>
 					</div>
 					<div className="text-center">
-						<div className="text-3xl font-bold text-corp-blue">{currentFeatures.length}</div>
-						<div className="text-sm text-corp-text-light mt-1">Current Features</div>
+						<div className="text-3xl font-bold text-corp-green">{currentFeatures.length}</div>
+						<div className="text-sm text-corp-green mt-1">Current Features</div>
 					</div>
 					<div className="text-center">
 						<div className="text-3xl font-bold text-amber-600">{totalValue}</div>
-						<div className="text-sm text-corp-text-light mt-1">Total Value Score</div>
+						<div className="text-sm text-corp-green mt-1">Total Value Score</div>
 					</div>
 				</div>
 			</div>

@@ -17,35 +17,35 @@ export const UploadForm = ({ onSubmit }) => {
 			}}
 		>
 		<label className="flex flex-col text-sm">
-			<span className="mb-1 font-medium text-corp-text">Candidate name</span>
+			<span className="mb-1 font-medium text-white">Candidate name</span>
 			<input
-				className="rounded border border-corp-gray bg-white px-3 py-2 text-corp-text focus:border-corp-blue focus:outline-none"
+				className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-2 text-white placeholder:text-[#666666] focus:border-corp-green focus:outline-none"
 				required
 				value={form.name}
 				onChange={(e) => setForm({ ...form, name: e.target.value })}
 			/>
 		</label>
 		<label className="flex flex-col text-sm">
-			<span className="mb-1 font-medium text-corp-text">Email (optional)</span>
+			<span className="mb-1 font-medium text-white">Email (optional)</span>
 			<input
-				className="rounded border border-corp-gray bg-white px-3 py-2 text-corp-text focus:border-corp-blue focus:outline-none"
+				className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-2 text-white placeholder:text-[#666666] focus:border-corp-green focus:outline-none"
 				type="email"
 				value={form.email}
 				onChange={(e) => setForm({ ...form, email: e.target.value })}
 			/>
 		</label>
 		<label className="flex flex-col text-sm">
-			<span className="mb-1 font-medium text-corp-text">Phone (optional)</span>
+			<span className="mb-1 font-medium text-white">Phone (optional)</span>
 			<input
-				className="rounded border border-corp-gray bg-white px-3 py-2 text-corp-text focus:border-corp-blue focus:outline-none"
+				className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-2 text-white placeholder:text-[#666666] focus:border-corp-green focus:outline-none"
 				value={form.phone}
 				onChange={(e) => setForm({ ...form, phone: e.target.value })}
 			/>
 		</label>
 		<label className="flex flex-col text-sm">
-			<span className="mb-1 font-medium text-corp-text">Position type</span>
+			<span className="mb-1 font-medium text-white">Position type</span>
 			<select
-				className="rounded border border-corp-gray bg-white px-3 py-2 text-corp-text focus:border-corp-blue focus:outline-none"
+				className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-2 text-white focus:border-corp-green focus:outline-none"
 				value={form.positionType}
 				onChange={(e) => setForm({ ...form, positionType: e.target.value })}
 			>

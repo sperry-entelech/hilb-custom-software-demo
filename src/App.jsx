@@ -80,7 +80,7 @@ export const App = () => {
 	}
 
 	return (
-		<div className="min-h-screen bg-white text-corp-text">
+		<div className="min-h-screen bg-[#1e1e1e] text-[#cccccc]">
 			<Header
 				currentView={view}
 				onViewChange={setView}
@@ -88,13 +88,13 @@ export const App = () => {
 			/>
 			<main className="mx-auto max-w-7xl px-8 py-8">
 				{configError && (
-					<div className="mb-6 rounded border border-amber-300 bg-amber-50 p-4 text-amber-800">
+					<div className="mb-6 rounded border border-amber-300 bg-amber-900/30 p-4 text-amber-200">
 						<p className="font-semibold">⚠️ Configuration Required</p>
 						<p className="text-sm mt-1">{configError}</p>
 					</div>
 				)}
 				{view === 'upload' && (
-					<div className="rounded border border-corp-gray bg-white p-8 shadow-corp">
+					<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-8 shadow-corp">
 						<UploadPage onUploadComplete={() => { setView('dashboard'); loadCandidatesData(); }} />
 					</div>
 				)}
@@ -106,7 +106,7 @@ export const App = () => {
 							<div className="flex gap-2 ml-4">
 								<button
 									onClick={() => exportToCSV(candidates)}
-									className="rounded border border-corp-gray bg-white px-4 py-2 text-sm text-corp-text hover:bg-corp-gray-light transition-colors shadow-corp"
+									className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-4 py-2 text-sm text-white hover:bg-[#3d3d3d] transition-colors shadow-corp"
 								>
 									Export CSV
 								</button>
@@ -131,7 +131,7 @@ export const App = () => {
 							</div>
 						)}
 						{loading ? (
-							<div className="rounded border border-corp-gray bg-white p-8 text-center text-corp-text-light shadow-corp">Loading candidates...</div>
+							<div className="rounded border border-[#3d3d3d] bg-[#2d2d2d] p-8 text-center text-corp-green shadow-corp">Loading candidates...</div>
 						) : (
 							<CandidateTable
 								candidates={candidates}

@@ -7,7 +7,7 @@ export const UploadZone = ({ onFilesSelected }) => {
 	return (
 		<div
 			className={`flex cursor-pointer flex-col items-center justify-center rounded border-2 border-dashed p-8 transition-colors ${
-				drag ? 'border-corp-blue bg-corp-gray-light' : 'border-corp-gray bg-white'
+				drag ? 'border-corp-green bg-[#3d3d3d]' : 'border-[#3d3d3d] bg-[#2d2d2d]'
 			}`}
 			onDragOver={(e) => {
 				e.preventDefault();
@@ -22,8 +22,8 @@ export const UploadZone = ({ onFilesSelected }) => {
 			}}
 			onClick={() => inputRef.current?.click()}
 		>
-			<p className="text-corp-text font-semibold">Drag & drop PDF resumes</p>
-			<p className="mt-1 text-sm text-corp-text-light">or click to select (up to 10 files)</p>
+			<p className="text-white font-semibold">Drag & drop PDF resumes</p>
+			<p className="mt-1 text-sm text-corp-green">or click to select (up to 10 files)</p>
 			<input
 				ref={inputRef}
 				type="file"

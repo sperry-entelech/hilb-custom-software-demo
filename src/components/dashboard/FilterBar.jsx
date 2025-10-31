@@ -5,7 +5,7 @@ export const FilterBar = ({ onChange }) => {
 	return (
 		<div className="mb-6 grid grid-cols-1 gap-3 md:grid-cols-4">
 			<select
-				className="rounded border border-corp-gray bg-white px-3 py-2 text-corp-text focus:border-corp-blue focus:outline-none shadow-corp"
+				className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-2 text-white focus:border-corp-green focus:outline-none shadow-corp"
 				onChange={(e) => emit({ positionType: e.target.value })}
 			>
 				<option value="all">All Positions</option>
@@ -13,7 +13,7 @@ export const FilterBar = ({ onChange }) => {
 				<option value="general">General</option>
 			</select>
 			<select
-				className="rounded border border-corp-gray bg-white px-3 py-2 text-corp-text focus:border-corp-blue focus:outline-none shadow-corp"
+				className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-2 text-white focus:border-corp-green focus:outline-none shadow-corp"
 				onChange={(e) => emit({ scoreRange: e.target.value })}
 			>
 				<option value="all">All Scores</option>
@@ -22,7 +22,7 @@ export const FilterBar = ({ onChange }) => {
 				<option value="low">Low (0-50)</option>
 			</select>
 			<select
-				className="rounded border border-corp-gray bg-white px-3 py-2 text-corp-text focus:border-corp-blue focus:outline-none shadow-corp"
+				className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-2 text-white focus:border-corp-green focus:outline-none shadow-corp"
 				onChange={(e) => emit({ status: e.target.value })}
 			>
 				<option value="all">All Statuses</option>
@@ -33,7 +33,7 @@ export const FilterBar = ({ onChange }) => {
 				<option value="hired">Hired</option>
 			</select>
 			<select
-				className="rounded border border-corp-gray bg-white px-3 py-2 text-corp-text focus:border-corp-blue focus:outline-none shadow-corp"
+				className="rounded border border-[#3d3d3d] bg-[#2d2d2d] px-3 py-2 text-white focus:border-corp-green focus:outline-none shadow-corp"
 				onChange={(e) => emit({ degree: e.target.value })}
 			>
 				<option value="all">All Degrees</option>
