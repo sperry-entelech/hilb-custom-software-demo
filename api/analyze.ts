@@ -1,7 +1,12 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Anthropic from '@anthropic-ai/sdk';
 
-const anthropicApiKey = process.env.VITE_ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY;
+// Vercel serverless functions use ANTHROPIC_API_KEY (not VITE_ prefix)
+const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+
+if (!anthropicApiKey) {
+	console.error('⚠️ ANTHROPIC_API_KEY not set in Vercel environment variables');
+}
 
 const client = anthropicApiKey ? new Anthropic({ apiKey: anthropicApiKey }) : null;
 
@@ -9,34 +14,82 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 	if (req.method !== 'POST') {
 		return res.status(405).json({ error: 'Method Not Allowed' });
 	}
-	if (!client) {
-		return res.status(500).json({ error: 'Anthropic API key missing' });
+	
+	if (!client || !anthropicApiKey) {
+		return res.status(500).json({ 
+			error: 'Anthropic API key not configured', 
+			details: 'Please set ANTHROPIC_API_KEY in Vercel environment variables' 
+		});
 	}
 
 	try {
 		const { candidate, positionType, resumeText } = req.body || {};
+		
 		if (!candidate?.name || !positionType || !resumeText) {
-			return res.status(400).json({ error: 'Missing candidate.name, positionType, or resumeText' });
+			return res.status(400).json({ 
+				error: 'Missing required fields', 
+				details: `Missing: ${!candidate?.name ? 'candidate.name ' : ''}${!positionType ? 'positionType ' : ''}${!resumeText ? 'resumeText' : ''}`.trim()
+			});
 		}
 
 		const isEarly = positionType === 'early_career';
-		const systemPrompt = 'You are an assistant that evaluates resumes for Hilb Group per strict JSON output.';
+		const systemPrompt = 'You are an assistant that evaluates resumes for Hilb Group. Return ONLY valid JSON, no markdown formatting, no code blocks.';
 		const userPrompt = buildPrompt({ candidate, positionType, resumeText });
 
 		const completion = await client.messages.create({
 			model: 'claude-3-5-sonnet-20240620',
-			max_tokens: 1200,
+			max_tokens: 2000,
 			temperature: 0,
 			system: systemPrompt,
 			messages: [{ role: 'user', content: userPrompt }],
 		});
 
 		const text = completion.content?.[0]?.type === 'text' ? completion.content[0].text : '';
-		// Expect raw JSON per spec
-		const json = JSON.parse(text);
+		
+		if (!text || text.trim().length === 0) {
+			return res.status(500).json({ 
+				error: 'Empty response from AI', 
+				details: 'Claude API returned empty content' 
+			});
+		}
+
+		// Try to extract JSON from markdown code blocks if present
+		let jsonText = text.trim();
+		const jsonMatch = jsonText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+		if (jsonMatch) {
+			jsonText = jsonMatch[1].trim();
+		}
+
+		let json;
+		try {
+			json = JSON.parse(jsonText);
+		} catch (parseError: any) {
+			console.error('JSON parse error:', parseError.message);
+			console.error('Response text (first 500 chars):', text.substring(0, 500));
+			return res.status(500).json({ 
+				error: 'Invalid JSON response from AI', 
+				details: parseError.message || 'Could not parse AI response as JSON' 
+			});
+		}
+
 		return res.status(200).json(json);
 	} catch (err: any) {
-		return res.status(500).json({ error: 'Analysis failed', details: err?.message });
+		console.error('Analyze API error:', err);
+		const errorMessage = err?.message || 'Unknown error';
+		const errorDetails = err?.cause || err?.details || errorMessage;
+		
+		// Check for specific Anthropic API errors
+		if (err?.status || err?.error) {
+			return res.status(err.status || 500).json({ 
+				error: 'Claude API error', 
+				details: err.error?.message || errorDetails 
+			});
+		}
+		
+		return res.status(500).json({ 
+			error: 'Analysis failed', 
+			details: errorMessage 
+		});
 	}
 }
 
