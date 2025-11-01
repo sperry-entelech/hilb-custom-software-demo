@@ -37,7 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 		const userPrompt = buildPrompt({ candidate, positionType, resumeText });
 
 		const completion = await client.messages.create({
-			model: 'claude-3-5-sonnet-20240620',
+			model: 'claude-3-5-sonnet',
 			max_tokens: 2000,
 			temperature: 0,
 			system: systemPrompt,
