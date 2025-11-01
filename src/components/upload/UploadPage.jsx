@@ -44,8 +44,18 @@ export const UploadPage = ({ onUploadComplete }) => {
 				setProgress('');
 			}, 1000);
 		} catch (e) {
-			setError(e.message || 'Processing failed');
+			// Extract detailed error information
+			const errorMessage = e.message || 'Processing failed';
+			const errorDetails = e.cause || (e.error || (typeof e === 'string' ? e : ''));
+			
+			// Combine message and details for better user feedback
+			const fullErrorMessage = errorDetails && errorDetails !== errorMessage
+				? `${errorMessage}: ${errorDetails}`
+				: errorMessage;
+			
+			setError(fullErrorMessage);
 			setProgress('');
+			console.error('Upload processing error:', e);
 		} finally {
 			setLoading(false);
 		}
@@ -70,7 +80,15 @@ export const UploadPage = ({ onUploadComplete }) => {
 				{progress}
 			</div>
 		)}
-		{error && <div className="rounded border border-red-600 bg-red-900/30 p-3 text-sm text-red-300">{error}</div>}
+		{error && (
+			<div className="rounded border border-red-600 bg-red-900/30 p-4 text-sm">
+				<div className="font-semibold text-red-200 mb-1">⚠️ Upload Failed</div>
+				<div className="text-red-300">{error}</div>
+				<div className="text-xs text-red-400 mt-2">
+					Tip: Ensure the file is a valid PDF and try again. Check browser console for more details.
+				</div>
+			</div>
+		)}
 		</div>
 	);
 };
